@@ -3,7 +3,7 @@ import Card from '../../shared/Card'
 
 function Calculator() {
 
-    const arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "ac", "="]
+    const arr = ["AC", "C", "*", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "00", "0", ".", "="]
 
     const [value, setValue] = useState("")
     const [justCalculated, setJustCalculated] = useState(false)
@@ -27,8 +27,13 @@ function Calculator() {
             }
         }
         else {
-            
-            setValue((prev) => prev + btnValue)
+            if(setJustCalculated){
+                const operators = ['-', '+', '/', '*']
+
+            }
+            else{
+                setValue((prev) => prev + btnValue)
+            }
         }
     }
 

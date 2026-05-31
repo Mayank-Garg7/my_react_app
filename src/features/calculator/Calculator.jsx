@@ -14,7 +14,7 @@ function Calculator() {
 
     // Handle button clicks
     const handleButtonClick = (btnValue) => {
-
+        
         if (btnValue === "ac") {
             setValue("")
         }
@@ -47,11 +47,11 @@ function Calculator() {
 
                         {arr.map((data, idx) => (
                             <button
-                            className='px-4 py-2 rounded-md font-medium transition duration-200 bg-gray-500 text-white hover:bg-gray-600 disabled:bg-gray-300'
+                                className='px-4 py-2 rounded-md font-medium transition duration-200 bg-gray-500 text-white hover:bg-gray-600 disabled:bg-gray-300'
                                 key={idx}
                                 variant="secondary"
-                                type="button"
-                                onClick={() => handlebuttonClick(data)}
+                                // type="submit"
+                                onClick={() => handleButtonClick(data)}
                             >
                                 {data}
                             </button>

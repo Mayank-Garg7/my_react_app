@@ -6,6 +6,7 @@ function Calculator() {
     const arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "ac", "="]
 
     const [value, setValue] = useState("")
+    const [justCalculated, setJustCalculated] = useState(false)
 
     // Handle typing in input box
     const handleInput = (e) => {
@@ -14,21 +15,23 @@ function Calculator() {
 
     // Handle button clicks
     const handleButtonClick = (btnValue) => {
-        
         if (btnValue === "ac") {
             setValue("")
         }
         else if (btnValue === "=") {
             try {
+                setJustCalculated(true)
                 setValue(eval(value).toString())
             } catch {
                 setValue("Error")
             }
         }
         else {
+            
             setValue((prev) => prev + btnValue)
         }
     }
+
 
     return (
         <div className="w-lg justify-self-center-safe mt-5">

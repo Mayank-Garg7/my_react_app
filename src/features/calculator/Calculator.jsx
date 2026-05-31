@@ -6,6 +6,7 @@ function Calculator() {
     const arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "ac", "="]
 
     const [value, setValue] = useState("")
+    const [justCalculated, setJustCalculated] = useState(false)
 
     // Handle typing in input box
     const handleInput = (e) => {
@@ -14,21 +15,23 @@ function Calculator() {
 
     // Handle button clicks
     const handleButtonClick = (btnValue) => {
-
         if (btnValue === "ac") {
             setValue("")
         }
         else if (btnValue === "=") {
             try {
+                setJustCalculated(true)
                 setValue(eval(value).toString())
             } catch {
                 setValue("Error")
             }
         }
         else {
+            
             setValue((prev) => prev + btnValue)
         }
     }
+
 
     return (
         <div className="w-lg justify-self-center-safe mt-5">
@@ -47,11 +50,11 @@ function Calculator() {
 
                         {arr.map((data, idx) => (
                             <button
-                            className='px-4 py-2 rounded-md font-medium transition duration-200 bg-gray-500 text-white hover:bg-gray-600 disabled:bg-gray-300'
+                                className='px-4 py-2 rounded-md font-medium transition duration-200 bg-gray-500 text-white hover:bg-gray-600 disabled:bg-gray-300'
                                 key={idx}
                                 variant="secondary"
-                                type="button"
-                                onClick={() => handlebuttonClick(data)}
+                                // type="submit"
+                                onClick={() => handleButtonClick(data)}
                             >
                                 {data}
                             </button>

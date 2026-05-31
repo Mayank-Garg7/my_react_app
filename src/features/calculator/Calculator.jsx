@@ -15,9 +15,13 @@ function Calculator() {
     const handleButtonClick = (btnValue) => {
 
         console.log(btnValue)
-        if (btnValue === "ac") {
+        if (btnValue === "AC") {
             setValue("")
-            setJustCalculated(false);
+            // setJustCalculated(false);
+        }
+        else if (btnValue === "C") {
+            setValue((prev) => prev.slice(0, -1))
+            // setJustCalculated(false);
         } else if (btnValue === "=") {
             try {
                 setJustCalculated(true)
@@ -27,7 +31,7 @@ function Calculator() {
             }
         }
         else {
-            if (setJustCalculated) {
+            if (justCalculated) {
                 const operators = ['-', '+', '/', '*', '.', '%']
                 if (!operators.includes(btnValue)) {
                     setValue(btnValue)

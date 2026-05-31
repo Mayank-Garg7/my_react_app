@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import Card from '../../shared/Card'
 
 function Calculator() {
-
     const arr = ["AC", "C", "%", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "00", "0", ".", "="]
-
     const [value, setValue] = useState("")
     const [justCalculated, setJustCalculated] = useState(false)
 
@@ -15,10 +13,12 @@ function Calculator() {
 
     // Handle button clicks
     const handleButtonClick = (btnValue) => {
+
+        console.log(btnValue)
         if (btnValue === "ac") {
             setValue("")
-        }
-        else if (btnValue === "=") {
+            setJustCalculated(false);
+        } else if (btnValue === "=") {
             try {
                 setJustCalculated(true)
                 setValue(eval(value).toString())
@@ -28,13 +28,14 @@ function Calculator() {
         }
         else {
             if (setJustCalculated) {
-                const operators = ['-', '+', '/', '*']
+                const operators = ['-', '+', '/', '*', '.', '%']
                 if (!operators.includes(btnValue)) {
                     setValue(btnValue)
                 }
                 else {
                     setValue((prev) => prev + btnValue)
                 }
+                setJustCalculated(false);
             }
             else {
                 setValue((prev) => prev + btnValue)

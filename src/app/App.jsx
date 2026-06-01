@@ -11,7 +11,6 @@ function App() {
       <Navbar />
       <TodoForm />
       <ShowTodos />
-      <StarRating />
     </ContextProvider>
   )
 }

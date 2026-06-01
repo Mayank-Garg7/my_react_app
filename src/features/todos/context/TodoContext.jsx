@@ -21,6 +21,12 @@ export const ContextProvider = ({ children }) => {
     }
   });
 
+  const handleDeleteTask = (id) => {
+    setTask((prev) =>
+      prev.filter((item) =>
+        item.id !== id
+      ))
+  }
 
   // Save tasks to localStorage whenever task changes
   useEffect(() => {
@@ -31,11 +37,11 @@ export const ContextProvider = ({ children }) => {
   // Update task status
   const handleStatusChange = (event, id) => {
     const checked = event.target.value;
-    setTask((prev)=> prev.map((data)=> {
-        if(data.id === id){
-            return{...data, status: checked}
-        }
-        return data
+    setTask((prev) => prev.map((data) => {
+      if (data.id === id) {
+        return { ...data, status: checked }
+      }
+      return data
     }
     ))
   };
@@ -47,6 +53,8 @@ export const ContextProvider = ({ children }) => {
         task,
         add_Task,
         handleStatusChange,
+        handleDeleteTask,
+
       }}
     >
       {children}

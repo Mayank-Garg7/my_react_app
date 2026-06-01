@@ -7,7 +7,7 @@ export const ContextProvider = ({ children }) => {
 
 
   const [edit, setEdit] = useState({
-    item: [],
+    item: {},
     editTask: false
   })
 

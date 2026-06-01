@@ -13,7 +13,7 @@ function TodoForm() {
   // console.log(edit.item.text)
   useEffect(() => {
     setText(edit.item.text)
-  },[edit])
+  }, [edit])
 
 
   const handleSubmit = (e) => {
@@ -23,13 +23,16 @@ function TodoForm() {
       return;
     }
     setMessage(false);
-    const newTask = {
-      id: Date.now(),
-      text,
-      status: "pending",
-      priority: "medium",
-    };
-    edit.editTask ? edit_Task(edit.item.id, newTask.text) : add_Task(newTask);
+    if (edit.editTask) {
+      edit_Task(edit.item.id, text);
+    } else {
+      add_Task({
+        id: Date.now(),
+        text,
+        status: "pending",
+        priority: "medium",
+      });
+    }
     setText("");
   };
 
@@ -68,7 +71,7 @@ function TodoForm() {
           {/* Button */}
           <div className="flex justify-end">
             <Button>
-              Add Task
+              {edit.editTask ? "Update Task" : "Add Task"}
             </Button>
           </div>
         </form>

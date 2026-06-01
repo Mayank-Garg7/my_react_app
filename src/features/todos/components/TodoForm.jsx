@@ -12,8 +12,8 @@ function TodoForm() {
 
   // console.log(edit.item.text)
   useEffect(() => {
-    setText(edit.item.text)
-  }, [edit])
+    setText(edit.item?.text || "");
+  }, [edit]);
 
 
   const handleSubmit = (e) => {

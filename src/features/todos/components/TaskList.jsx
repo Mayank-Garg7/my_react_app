@@ -4,7 +4,7 @@ import Card from "../../../shared/Card";
 import TodoContext from "../context/TodoContext";
 
 function TaskList({ item }) {
-  const { handleStatusChange, handleDeleteTask } = useContext(TodoContext);
+  const { handleStatusChange, handleDeleteTask, handleEditTask } = useContext(TodoContext);
 
   // =========================
   // Status Styles
@@ -127,6 +127,7 @@ function TaskList({ item }) {
           {/* Add Button */}
           <button
             className={`${buttonBaseStyle} bg-blue-600 hover:bg-blue-700`}
+            onClick={()=> handleEditTask(item)}
           >
             <FaPen />
             Edit Task

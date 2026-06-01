@@ -34,12 +34,22 @@ export const ContextProvider = ({ children }) => {
   }
 
   const handleEditTask = (item) => {
-      setEdit({
-        item,
-        editTask: true
-      })
+    setEdit({
+      item,
+      editTask: true
+    })
   }
 
+  const edit_Task = (id, text) => {
+    setTask((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, text } : item
+      ))
+    setEdit({
+      item: {},
+      editTask: false
+    });
+  }
 
   // Save tasks to localStorage whenever task changes
   useEffect(() => {
@@ -69,6 +79,7 @@ export const ContextProvider = ({ children }) => {
         handleDeleteTask,
         handleEditTask,
         edit,
+        edit_Task
       }}
     >
       {children}

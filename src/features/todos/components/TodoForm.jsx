@@ -29,7 +29,7 @@ function TodoForm() {
       status: "pending",
       priority: "medium",
     };
-    edit.edit ? edit_Task(edit.item.id, newTask.text) : add_Task(newTask);
+    edit.editTask ? edit_Task(edit.item.id, newTask.text) : add_Task(newTask);
     setText("");
   };
 

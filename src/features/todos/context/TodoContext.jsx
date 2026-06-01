@@ -6,6 +6,11 @@ const TodoContext = createContext();
 export const ContextProvider = ({ children }) => {
 
 
+  const [edit, setEdit] = useState({
+    item: {},
+    editTask: false
+  })
+
   const add_Task = (newTask) => {
     setTask((prev) => [...prev, newTask]);
   };
@@ -26,6 +31,24 @@ export const ContextProvider = ({ children }) => {
       prev.filter((item) =>
         item.id !== id
       ))
+  }
+
+  const handleEditTask = (item) => {
+    setEdit({
+      item,
+      editTask: true
+    })
+  }
+
+  const edit_Task = (id, text) => {
+    setTask((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, text } : item
+      ))
+    setEdit({
+      item: {},
+      editTask: false
+    });
   }
 
   // Save tasks to localStorage whenever task changes
@@ -54,7 +77,9 @@ export const ContextProvider = ({ children }) => {
         add_Task,
         handleStatusChange,
         handleDeleteTask,
-
+        handleEditTask,
+        edit,
+        edit_Task
       }}
     >
       {children}

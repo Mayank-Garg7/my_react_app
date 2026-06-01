@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TodoContext from "../context/TodoContext";
 import Card from "../../../shared/Card";
 import Button from "../../../shared/Button";
@@ -7,7 +7,14 @@ import Button from "../../../shared/Button";
 function TodoForm() {
   const [text, setText] = useState("");
   const [message, setMessage] = useState(false);
-  const { add_Task } = useContext(TodoContext);
+  const { add_Task, edit, edit_Task } = useContext(TodoContext);
+
+
+  // console.log(edit.item.text)
+  useEffect(() => {
+    setText(edit.item?.text || "");
+  }, [edit]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,13 +23,16 @@ function TodoForm() {
       return;
     }
     setMessage(false);
-    const newTask = {
-      id: Date.now(),
-      text,
-      status: "pending",
-      priority: "medium",
-    };
-    add_Task(newTask);
+    if (edit.editTask) {
+      edit_Task(edit.item.id, text);
+    } else {
+      add_Task({
+        id: Date.now(),
+        text,
+        status: "pending",
+        priority: "medium",
+      });
+    }
     setText("");
   };
 
@@ -61,7 +71,7 @@ function TodoForm() {
           {/* Button */}
           <div className="flex justify-end">
             <Button>
-              Add Task
+              {edit.editTask ? "Update Task" : "Add Task"}
             </Button>
           </div>
         </form>

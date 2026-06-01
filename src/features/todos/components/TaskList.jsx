@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FaTrash, FaPlus } from "react-icons/fa";
+import { FaTrash, FaPen } from "react-icons/fa";
 
 import Card from "../../../shared/Card";
 import TodoContext from "../context/TodoContext";
@@ -147,8 +147,8 @@ function TaskList({ item }) {
               bg-blue-600 hover:bg-blue-700
             `}
           >
-            <FaPlus />
-            Add Task
+            <FaPen />
+            Edit Task
           </button>
 
           {/* Delete Button */}

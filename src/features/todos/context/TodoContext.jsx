@@ -69,7 +69,6 @@ export const ContextProvider = ({ children }) => {
         handleDeleteTask,
         handleEditTask,
         edit,
-
       }}
     >
       {children}

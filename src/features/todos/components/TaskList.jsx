@@ -126,10 +126,7 @@ function TaskList({ item }) {
         <div className="flex items-center gap-3 pt-2">
           {/* Add Button */}
           <button
-            className={`
-              ${buttonBaseStyle}
-              bg-blue-600 hover:bg-blue-700
-            `}
+            className={`${buttonBaseStyle} bg-blue-600 hover:bg-blue-700`}
           >
             <FaPen />
             Edit Task
@@ -137,10 +134,7 @@ function TaskList({ item }) {
           {/* Delete Button */}
           <button
             onClick={() => handleDeleteTask(item.id)}
-            className={`
-              ${buttonBaseStyle}
-              bg-red-600 hover:bg-red-700
-            `}
+            className={`${buttonBaseStyle} bg-red-600 hover:bg-red-700`}
           >
             <FaTrash />
             Delete

@@ -31,7 +31,7 @@ function TodoForm() {
         id: Date.now(),
         text,
         status: "pending",
-        priority: "medium",
+        priority,
       });
     }
     setText("");
@@ -67,14 +67,12 @@ function TodoForm() {
                 Task must be at least 10 characters long.
               </p>
             )}
-            <input
-              type="text"
-              placeholder="Enter the task priority"
-              value={priority}
-              onChange={(e) => setPriority(e.target.value)}
-              className="w-full mt-5 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100" />
           </div>
-          <select>
+          <select
+            className="w-full mt-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+          >
             <option value="Easy">Easy</option>
             <option value="Moderate">Moderate</option>
             <option value="High">High</option>
@@ -89,7 +87,7 @@ function TodoForm() {
           </div>
         </form>
       </Card>
-    </div>
+    </div >
   );
 }
 

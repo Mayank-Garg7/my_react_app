@@ -14,6 +14,7 @@ function TodoForm() {
   // console.log(edit.item.text)
   useEffect(() => {
     setText(edit.item?.text || "");
+    setPriority(edit.item?.priority || "");
   }, [edit]);
 
 

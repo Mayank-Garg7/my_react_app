@@ -51,7 +51,7 @@ function TodoForm() {
             </h2>
 
             <p className="mt-1 text-sm text-slate-500">
-              Add and organize your daily workflow
+             {edit.editTask ? "Modify your task details" : "Add and organize your daily workflow"}
             </p>
           </div>
 

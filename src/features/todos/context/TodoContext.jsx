@@ -43,7 +43,7 @@ export const ContextProvider = ({ children }) => {
   const edit_Task = (id, text) => {
     setTask((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, text } : item
+        item.id === id ? { ...item, ...text } : item
       ))
     setEdit({
       item: {},

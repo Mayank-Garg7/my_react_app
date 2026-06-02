@@ -67,29 +67,32 @@ function TodoForm() {
                 Task must be at least 10 characters long.
               </p>
             )}
-            <input
+            {/* <input
               type="text"
               placeholder="Enter the task priority"
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
-              className="w-full mt-5 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100" />
+              className="w-full mt-5 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100" /> */}
           </div>
-          <select>
-            <option value="Easy">Easy</option>
-            <option value="Moderate">Moderate</option>
-            <option value="High">High</option>
-            <option value="Very-High">Very-High</option>
-          </select>
+          <select
+            className="w-full mt-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100" 
 
-          {/* Button */}
-          <div className="flex justify-end">
-            <Button>
-              {edit.editTask ? "Update Task" : "Add Task"}
-            </Button>
-          </div>
-        </form>
-      </Card>
-    </div>
+            >
+          <option value="Easy">Easy</option>
+          <option value="Moderate">Moderate</option>
+          <option value="High">High</option>
+          <option value="Very-High">Very-High</option>
+        </select>
+
+        {/* Button */}
+        <div className="flex justify-end">
+          <Button>
+            {edit.editTask ? "Update Task" : "Add Task"}
+          </Button>
+        </div>
+      </form>
+    </Card>
+    </div >
   );
 }
 

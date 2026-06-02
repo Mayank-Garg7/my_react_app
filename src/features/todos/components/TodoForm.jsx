@@ -7,6 +7,7 @@ import Button from "../../../shared/Button";
 function TodoForm() {
   const [text, setText] = useState("");
   const [message, setMessage] = useState(false);
+  const [priority, setPriority] = useState("")
   const { add_Task, edit, edit_Task } = useContext(TodoContext);
 
 
@@ -66,7 +67,19 @@ function TodoForm() {
                 Task must be at least 10 characters long.
               </p>
             )}
+            <input
+              type="text"
+              placeholder="Enter the task priority"
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+              className="w-full mt-5 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100" />
           </div>
+          <select>
+            <option value="Easy">Easy</option>
+            <option value="Moderate">Moderate</option>
+            <option value="High">High</option>
+            <option value="Very-High">Very-High</option>
+          </select>
 
           {/* Button */}
           <div className="flex justify-end">

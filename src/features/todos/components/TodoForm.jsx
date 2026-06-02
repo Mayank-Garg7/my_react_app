@@ -7,6 +7,7 @@ import Button from "../../../shared/Button";
 function TodoForm() {
   const [text, setText] = useState("");
   const [message, setMessage] = useState(false);
+  const [priority, setPriority] = useState("")
   const { add_Task, edit, edit_Task } = useContext(TodoContext);
 
 

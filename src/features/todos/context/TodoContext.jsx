@@ -4,18 +4,12 @@ import Tasks from "../mock/Tasks.json";
 const TodoContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-
-
   const [edit, setEdit] = useState({
     item: {},
     editTask: false
-  })
+  });
 
-  const add_Task = (newTask) => {
-    setTask((prev) => [...prev, newTask]);
-  };
-
-
+  // Load tasks from localStorage or fall back to Mock json
   const [task, setTask] = useState(() => {
     const data = localStorage.getItem("TaskData");
     try {
@@ -26,49 +20,47 @@ export const ContextProvider = ({ children }) => {
     }
   });
 
+  const add_Task = (newTask) => {
+    setTask((prev) => [...prev, newTask]);
+  };
+
   const handleDeleteTask = (id) => {
-    setTask((prev) =>
-      prev.filter((item) =>
-        item.id !== id
-      ))
-  }
+    setTask((prev) => prev.filter((item) => item.id !== id));
+  };
 
   const handleEditTask = (item) => {
     setEdit({
       item,
       editTask: true
-    })
-  }
+    });
+  };
 
-  const edit_Task = (id, text) => {
+  // FIX: Renamed second parameter to updatedFields for clarity and exact spreading
+  const edit_Task = (id, updatedFields) => {
     setTask((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, ...text } : item
-      ))
+        item.id === id ? { ...item, ...updatedFields } : item
+      )
+    );
+    // Reset edit state
     setEdit({
       item: {},
       editTask: false
     });
-  }
+  };
 
   // Save tasks to localStorage whenever task changes
   useEffect(() => {
     localStorage.setItem("TaskData", JSON.stringify(task));
   }, [task]);
 
-
   // Update task status
   const handleStatusChange = (event, id) => {
     const checked = event.target.value;
-    setTask((prev) => prev.map((data) => {
-      if (data.id === id) {
-        return { ...data, status: checked }
-      }
-      return data
-    }
-    ))
+    setTask((prev) =>
+      prev.map((data) => (data.id === id ? { ...data, status: checked } : data))
+    );
   };
-
 
   return (
     <TodoContext.Provider

@@ -7,14 +7,14 @@ import Button from "../../../shared/Button";
 function TodoForm() {
   const [text, setText] = useState("");
   const [message, setMessage] = useState(false);
-  const [priority, setPriority] = useState("")
+  const [priority, setPriority] = useState("Easy")
   const { add_Task, edit, edit_Task } = useContext(TodoContext);
 
 
   // console.log(edit.item.text)
   useEffect(() => {
     setText(edit.item?.text || "");
-    setPriority(edit.item?.priority || "");
+    setPriority(edit.item?.priority || "Easy");
   }, [edit]);
 
 
@@ -26,7 +26,7 @@ function TodoForm() {
     }
     setMessage(false);
     if (edit.editTask) {
-      edit_Task(edit.item.id, text);
+      edit_Task(edit.item.id, { text, priority });
     } else {
       add_Task({
         id: Date.now(),
@@ -36,6 +36,7 @@ function TodoForm() {
       });
     }
     setText("");
+    setPriority("Easy")
   };
 
   return (
@@ -46,7 +47,7 @@ function TodoForm() {
           {/* Header */}
           <div>
             <h2 className="text-xl font-semibold tracking-tight text-slate-800">
-              Create New Task
+              {edit.editTask ? "Update Task" : "Create New Task"}
             </h2>
 
             <p className="mt-1 text-sm text-slate-500">

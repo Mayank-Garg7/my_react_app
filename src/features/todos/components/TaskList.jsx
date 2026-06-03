@@ -5,8 +5,6 @@ import TodoContext from "../context/TodoContext";
 
 function TaskList({ item }) {
   const { handleStatusChange, handleDeleteTask, handleEditTask } = useContext(TodoContext);
-  const pendingTasks = item.status === "pending"
-  const completedTasks = item.status === "completed"
   // =========================
   // Status Styles
   // =========================

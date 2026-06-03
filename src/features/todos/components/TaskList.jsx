@@ -29,9 +29,9 @@ function TaskList({ item }) {
   // Reusable Button Styles
   // =========================
   const buttonBaseStyle = `
-    flex items-center gap-2
+    flex items-center gap-1
     rounded-lg
-    px-4 py-2
+    px-2 py-1
     text-sm font-medium
     text-white
     transition duration-200
@@ -41,11 +41,11 @@ function TaskList({ item }) {
 
   return (
     <Card>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-2">
         {/* ========================================
             Header
         ======================================== */}
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start justify-between gap-2">
           {/* Task Info */}
           <div>
             <h3 className="text-lg font-semibold tracking-tight text-slate-800">
@@ -79,7 +79,6 @@ function TaskList({ item }) {
             </p>
             <p
               className={`
-                mt-1
                 text-sm font-semibold
                 capitalize
                 ${priorityStyles[item.priority]}
@@ -104,7 +103,7 @@ function TaskList({ item }) {
                 rounded-lg
                 border border-slate-300
                 bg-white
-                px-3 py-2.5
+                px-2 py-2
                 text-sm font-medium text-slate-700
                 shadow-sm
                 outline-none

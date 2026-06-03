@@ -15,13 +15,9 @@ function TodoForm() {
       // FIX: Capitalize or format value matching to prevent mismatch with case-sensitive dropdowns
       const itemPriority = edit.item.priority || "Easy";
       const formattedPriority = itemPriority.charAt(0).toUpperCase() + itemPriority.slice(1);
-
-
-
       // Safety check to ensure it matches one of our values
       if (["Easy", "Moderate", "High", "Very-High"].includes(formattedPriority)) {
         setPriority(formattedPriority);
-        
       } else if (itemPriority === "very-high" || itemPriority === "Very-High") {
         setPriority("Very-High");
       } else {
@@ -34,6 +30,7 @@ function TodoForm() {
     }
   }, [edit]);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim().length < 10) {
@@ -41,7 +38,6 @@ function TodoForm() {
       return;
     }
     setMessage(false);
-
     if (edit.editTask) {
       edit_Task(edit.item.id, { text, priority });
     } else {
@@ -52,16 +48,17 @@ function TodoForm() {
         priority,
       });
     }
-    
     // Completely clear out fields
     setText("");
     setPriority("Easy");
   };
 
+
+
   return (
-    <div className="w-xl justify-self-center-safe mt-5">
+    <div className="w-xl justify-self-center-safe mt-3">
       <Card>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
           {/* Header */}
           <div>
             <h2 className="text-xl font-semibold tracking-tight text-slate-800">
@@ -79,7 +76,7 @@ function TodoForm() {
               placeholder="Enter your task..."
               value={text}
               onChange={(e) => setText(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100" 
+              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm outline-none transition duration-200 placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
             />
             {message && (
               <p className="mt-2 text-sm font-medium text-red-500">

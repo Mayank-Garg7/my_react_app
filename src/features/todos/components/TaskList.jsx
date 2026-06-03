@@ -5,7 +5,8 @@ import TodoContext from "../context/TodoContext";
 
 function TaskList({ item }) {
   const { handleStatusChange, handleDeleteTask, handleEditTask } = useContext(TodoContext);
-
+  const pendingTasks = item.status === "pending"
+  const completedTasks = item.status === "completed"
   // =========================
   // Status Styles
   // =========================
@@ -14,16 +15,15 @@ function TaskList({ item }) {
     completed: "bg-emerald-50 text-emerald-700 border border-emerald-200",
   };
 
-
   // =========================
   // Priority Styles
   // =========================
   const priorityStyles = {
-    high: "text-red-600",
-    medium: "text-amber-600",
-    low: "text-emerald-600",
+    Easy: "text-emerald-600",
+    Moderate: "text-amber-600",
+    High: "text-orange-600",
+    'Very-High': "text-red-600",
   };
-
 
   // =========================
   // Reusable Button Styles
@@ -36,6 +36,8 @@ function TaskList({ item }) {
     text-white
     transition duration-200
   `;
+
+
 
   return (
     <Card>
@@ -127,7 +129,7 @@ function TaskList({ item }) {
           {/* Add Button */}
           <button
             className={`${buttonBaseStyle} bg-blue-600 hover:bg-blue-700`}
-            onClick={()=> handleEditTask(item)}
+            onClick={() => handleEditTask(item)}
           >
             <FaPen />
             Edit Task

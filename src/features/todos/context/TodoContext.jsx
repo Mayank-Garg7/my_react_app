@@ -55,10 +55,9 @@ export const ContextProvider = ({ children }) => {
   }, [task]);
 
   // Update task status
-  const handleStatusChange = (event, id) => {
-    const checked = event.target.value;
+  const handleStatusChange = (state, id) => {
     setTask((prev) =>
-      prev.map((data) => (data.id === id ? { ...data, status: checked } : data))
+      prev.map((data) => (data.id === id ? { ...data, status: state } : data))
     );
   };
 

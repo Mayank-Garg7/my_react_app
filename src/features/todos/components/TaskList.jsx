@@ -5,8 +5,6 @@ import TodoContext from "../context/TodoContext";
 
 function TaskList({ item }) {
   const { handleStatusChange, handleDeleteTask, handleEditTask } = useContext(TodoContext);
-  const pendingTasks = item.status === "pending"
-  const completedTasks = item.status === "completed"
   // =========================
   // Status Styles
   // =========================
@@ -41,7 +39,7 @@ function TaskList({ item }) {
 
   return (
     <Card>
-      <div className="flex flex-col gap-2">
+      <div className=" cursor-grab flex flex-col gap-2">
         {/* ========================================
             Header
         ======================================== */}
@@ -134,6 +132,7 @@ function TaskList({ item }) {
         </div>
       </div>
     </Card>
+
   );
 }
 

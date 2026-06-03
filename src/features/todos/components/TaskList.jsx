@@ -5,7 +5,8 @@ import TodoContext from "../context/TodoContext";
 
 function TaskList({ item }) {
   const { handleStatusChange, handleDeleteTask, handleEditTask } = useContext(TodoContext);
-
+  const pendingTasks = item.status === "pending"
+  const completedTasks = item.status === "completed"
   // =========================
   // Status Styles
   // =========================
@@ -13,7 +14,6 @@ function TaskList({ item }) {
     pending: "bg-amber-50 text-amber-700 border border-amber-200",
     completed: "bg-emerald-50 text-emerald-700 border border-emerald-200",
   };
-
 
   // =========================
   // Priority Styles
@@ -36,6 +36,8 @@ function TaskList({ item }) {
     text-white
     transition duration-200
   `;
+
+
 
   return (
     <Card>

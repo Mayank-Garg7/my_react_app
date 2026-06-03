@@ -39,7 +39,7 @@ function TaskList({ item }) {
 
   return (
     <Card>
-      <div className="flex flex-col gap-2">
+      <div className=" cursor-grab flex flex-col gap-2">
         {/* ========================================
             Header
         ======================================== */}

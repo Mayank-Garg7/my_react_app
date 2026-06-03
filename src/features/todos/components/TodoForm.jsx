@@ -12,14 +12,16 @@ function TodoForm() {
   useEffect(() => {
     if (edit.editTask && edit.item) {
       setText(edit.item.text || "");
-      
       // FIX: Capitalize or format value matching to prevent mismatch with case-sensitive dropdowns
       const itemPriority = edit.item.priority || "Easy";
       const formattedPriority = itemPriority.charAt(0).toUpperCase() + itemPriority.slice(1);
-      
+
+
+
       // Safety check to ensure it matches one of our values
       if (["Easy", "Moderate", "High", "Very-High"].includes(formattedPriority)) {
         setPriority(formattedPriority);
+        
       } else if (itemPriority === "very-high" || itemPriority === "Very-High") {
         setPriority("Very-High");
       } else {

@@ -19,11 +19,11 @@ function TaskList({ item }) {
   // Priority Styles
   // =========================
   const priorityStyles = {
-    high: "text-red-600",
-    medium: "text-amber-600",
-    low: "text-emerald-600",
+    Easy: "text-emerald-600",
+    Moderate: "text-amber-600",
+    High: "text-orange-600",
+    'Very-High': "text-red-600",
   };
-
 
   // =========================
   // Reusable Button Styles
@@ -127,7 +127,7 @@ function TaskList({ item }) {
           {/* Add Button */}
           <button
             className={`${buttonBaseStyle} bg-blue-600 hover:bg-blue-700`}
-            onClick={()=> handleEditTask(item)}
+            onClick={() => handleEditTask(item)}
           >
             <FaPen />
             Edit Task

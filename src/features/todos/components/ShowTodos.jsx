@@ -9,35 +9,27 @@ function ShowTodos() {
   const completedTasks = task.filter((item) => item.status === "completed");
 
   return (
-    <div className="p-4 space-y-8">
+    <div className="p-4 flex gap-6">
 
-      {/* Pending Section */}
-      <div>
-        <h2 className="text-xl font-bold mb-3">Pending Tasks</h2>
+      {/* Pending Column */}
+      <div className="flex-1 bg-gray-50 p-4 rounded-lg">
+        <h2 className="text-xl font-bold mb-4">Pending</h2>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {pendingTasks.length > 0 ? (
-            pendingTasks.map((item) => (
-              <TaskList key={item.id} item={item} />
-            ))
-          ) : (
-            <p>No pending tasks</p>
-          )}
+        <div className="space-y-4">
+          {pendingTasks.map((item) => (
+            <TaskList key={item.id} item={item} />
+          ))}
         </div>
       </div>
 
-      {/* Completed Section */}
-      <div>
-        <h2 className="text-xl font-bold mb-3">Completed Tasks</h2>
+      {/* Completed Column */}
+      <div className="flex-1 bg-gray-50 p-4 rounded-lg">
+        <h2 className="text-xl font-bold mb-4">Completed</h2>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {completedTasks.length > 0 ? (
-            completedTasks.map((item) => (
-              <TaskList key={item.id} item={item} />
-            ))
-          ) : (
-            <p>No completed tasks</p>
-          )}
+        <div className="space-y-4">
+          {completedTasks.map((item) => (
+            <TaskList key={item.id} item={item} />
+          ))}
         </div>
       </div>
 

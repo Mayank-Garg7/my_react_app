@@ -12,8 +12,9 @@ function ShowTodos() {
     <div className="p-4 flex gap-6">
 
       {/* Pending Column */}
-      <div className="flex-1 bg-gray-50 p-4 rounded-lg">
-        <h2 className="text-xl font-bold mb-4">Pending</h2>
+      <div className="flex-1 bg-gray-200 p-4 rounded-lg">
+        <h2 className="text-xl font-bold mb-4 justify-content
+        ">Pending</h2>
 
         <div className="space-y-4">
           {pendingTasks.map((item) => (
@@ -23,7 +24,7 @@ function ShowTodos() {
       </div>
 
       {/* Completed Column */}
-      <div className="flex-1 bg-gray-50 p-4 rounded-lg">
+      <div className="flex-1 bg-gray-200 p-4 rounded-lg">
         <h2 className="text-xl font-bold mb-4">Completed</h2>
 
         <div className="space-y-4">

@@ -36,3 +36,8 @@ def get_tasks_by_id(id: int):
 def add_tasks(task: Task):
     tasks.append(task)
     return tasks
+
+
+@app.put("/task")
+def update_task(id: int, task: Task):
+    pass

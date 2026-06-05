@@ -3,27 +3,28 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-app.app_middleware(
+# Allow React frontend to access API
+app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173/"],
+    allow_origins=["http://localhost:3000"],  # React app URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 tasks = [
     {
         "id": 1,
-        "text": "did You do stretching today",
-        "status": "pending",
-        "priority": "moderate"
+        "title": "Learn React",
+        "status": "Pending"
     },
     {
         "id": 2,
-        "text": "did you learn something new today",
-        "status": "pending",
-        "priority": "high"
+        "title": "Learn FastAPI",
+        "status": "Completed"
     }
 ]
-@app.get("/")
-def greet():
-    return {"message": "hello mayank welcome in fastApi Era"}
+
+@app.get("/tasks")
+def get_tasks():
+    return tasks

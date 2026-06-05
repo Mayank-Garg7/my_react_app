@@ -15,7 +15,7 @@ app.add_middleware(
 tasks = [
     {
         "id": 1,
-        "text": "did You do stretching today",
+        "text": "did You do stretch today",
         "status": "pending",
         "priority": "moderate"
     },
@@ -23,8 +23,20 @@ tasks = [
         "id": 2,
         "text": "did you learn something new today",
         "status": "pending",
-        "priority": "high"
-    }
+        "priority": "Very-High"
+    },
+    {
+        "id": 3,
+        "text": "did eat something healthy",
+        "status": "pending",
+        "priority": "High"
+    },
+    {
+        "id": 4,
+        "text": "did you do worship",
+        "status": "pending",
+        "priority": "High"
+    },
 ]
 
 @app.get("/tasks")

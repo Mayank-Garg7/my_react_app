@@ -40,5 +40,12 @@ tasks = [
 ]
 
 @app.get("/tasks")
-def get_tasks():
+def get_all_tasks():
     return tasks
+
+@app.get("/tasks/{id}")
+def get_tasks_by_id(id: int):
+    for task in tasks:
+        if task.id == id:
+            return task
+    return "Task Not Found"

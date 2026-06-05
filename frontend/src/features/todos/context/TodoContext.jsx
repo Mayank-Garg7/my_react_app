@@ -10,16 +10,26 @@ export const ContextProvider = ({ children }) => {
   });
 
   // Load tasks from localStorage or fall back to Mock json
-  const [task, setTask] = useState(() => {
-    const data = localStorage.getItem("TaskData");
-    try {
-      return data ? JSON.parse(data) : Tasks;
-    } catch (error) {
-      console.error("Invalid localStorage data:", error);
-      return Tasks;
-    }
-  });
+  const [task, setTask] = useState([]);
 
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/tasks");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch tasks");
+        }
+
+        const data = await response.json();
+        setTask(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTasks();
+  }, []);
   const add_Task = (newTask) => {
     setTask((prev) => [...prev, newTask]);
   };

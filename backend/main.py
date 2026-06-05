@@ -49,3 +49,9 @@ def get_tasks_by_id(id: int):
         if task.id == id:
             return task
     return "Task Not Found"
+
+
+@app.post("/tasks")
+def add_tasks(task):
+    tasks.append(task)
+    return tasks

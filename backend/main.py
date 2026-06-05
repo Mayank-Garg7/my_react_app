@@ -6,7 +6,7 @@ app = FastAPI()
 # Allow React frontend to access API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React app URL
+    allow_origins=["http://localhost:5173"],  # React app URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -15,13 +15,15 @@ app.add_middleware(
 tasks = [
     {
         "id": 1,
-        "title": "Learn React",
-        "status": "Pending"
+        "text": "did You do stretching today",
+        "status": "pending",
+        "priority": "moderate"
     },
     {
         "id": 2,
-        "title": "Learn FastAPI",
-        "status": "Completed"
+        "text": "did you learn something new today",
+        "status": "pending",
+        "priority": "high"
     }
 ]
 

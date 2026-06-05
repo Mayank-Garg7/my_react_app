@@ -4,36 +4,38 @@ import Tasks from "../mock/Tasks.json";
 const TodoContext = createContext();
 
 export const ContextProvider = ({ children }) => {
+
+  const [task, setTask] = useState([]);
+
+useEffect(() => {
+  fetch("http://127.0.0.1:8000/tasks")
+    .then((res) => res.json())
+    .then((data) => {
+      setTask(data);
+      localStorage.setItem("TaskData", JSON.stringify(data));
+    })
+    .catch((err) => console.error(err));
+}, []);
+
+useEffect(() => {
+  localStorage.setItem("TaskData", JSON.stringify(task));
+}, [task]);
+
+
+  useEffect(() => {
+  if (task.length > 0) {
+    localStorage.setItem("TaskData", JSON.stringify(task));
+  }
+}, [task]);
+
+
+
   const [edit, setEdit] = useState({
     item: {},
     editTask: false
   });
 
-  // Load tasks from localStorage or fall back to Mock json
-  const [task, setTask] = useState([]);
 
- useEffect(() => {
-  const fetchTasks = async () => {
-    const localData = localStorage.getItem("TaskData");
-
-    if (localData) {
-      setTask(JSON.parse(localData));
-      return;
-    }
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/tasks");
-      const data = await response.json();
-
-      setTask(data);
-      localStorage.setItem("TaskData", JSON.stringify(data));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  fetchTasks();
-}, []);
   const add_Task = (newTask) => {
     setTask((prev) => [...prev, newTask]);
   };
@@ -62,11 +64,6 @@ export const ContextProvider = ({ children }) => {
       editTask: false
     });
   };
-
-  // Save tasks to localStorage whenever task changes
-  // useEffect(() => {
-  //   localStorage.setItem("TaskData", JSON.stringify(task));
-  // }, [task]);
 
   // Update task status
   const handleStatusChange = (state, id) => {

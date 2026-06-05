@@ -63,11 +63,6 @@ export const ContextProvider = ({ children }) => {
     });
   };
 
-  // Save tasks to localStorage whenever task changes
-  // useEffect(() => {
-  //   localStorage.setItem("TaskData", JSON.stringify(task));
-  // }, [task]);
-
   // Update task status
   const handleStatusChange = (state, id) => {
     setTask((prev) =>

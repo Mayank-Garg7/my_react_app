@@ -6,27 +6,27 @@ const TodoContext = createContext();
 export const ContextProvider = ({ children }) => {
 
   const [task, setTask] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  fetch("http://127.0.0.1:8000/tasks")
+    .then((res) => res.json())
+    .then((data) => {
+      setTask(data);
+      localStorage.setItem("TaskData", JSON.stringify(data));
+    })
+    .catch((err) => console.error(err));
+}, []);
+
+useEffect(() => {
+  localStorage.setItem("TaskData", JSON.stringify(task));
+}, [task]);
+
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:8000/tasks");
-        if (!response.ok) {
-          throw new Error("Failed to fetch tasks");
-        }
-        const data = await response.json();
-        setTask(data);
-        localStorage.setItem("TaskData", JSON.stringify(data));
-      } catch (error) {
-        console.error("Fetch Error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTasks();
-  }, []);
+  if (task.length > 0) {
+    localStorage.setItem("TaskData", JSON.stringify(task));
+  }
+}, [task]);
 
 
 

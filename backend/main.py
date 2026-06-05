@@ -39,5 +39,16 @@ def add_tasks(task: Task):
 
 
 @app.put("/task")
-def update_task(id: int, task: Task):
-    pass
+def update_task(id: int, new_task: Task):
+    for i in range(len(tasks)):
+        if tasks[i].id == id:
+            tasks[i] = new_task
+            return "Task has been updated successfully!"
+    return "No Match Found"
+
+@app.delete("/task")
+def delete_task(id: int):
+    for task in tasks:
+        if task.id == id:
+            del(task)
+            return "Task has been deleted successfully!"

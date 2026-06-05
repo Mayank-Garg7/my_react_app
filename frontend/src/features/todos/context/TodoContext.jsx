@@ -4,36 +4,38 @@ import Tasks from "../mock/Tasks.json";
 const TodoContext = createContext();
 
 export const ContextProvider = ({ children }) => {
+
+  const [task, setTask] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/tasks");
+        if (!response.ok) {
+          throw new Error("Failed to fetch tasks");
+        }
+        const data = await response.json();
+        setTask(data);
+        localStorage.setItem("TaskData", JSON.stringify(data));
+      } catch (error) {
+        console.error("Fetch Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTasks();
+  }, []);
+
+
+
   const [edit, setEdit] = useState({
     item: {},
     editTask: false
   });
 
-  // Load tasks from localStorage or fall back to Mock json
-  const [task, setTask] = useState([]);
 
- useEffect(() => {
-  const fetchTasks = async () => {
-    const localData = localStorage.getItem("TaskData");
-
-    if (localData) {
-      setTask(JSON.parse(localData));
-      return;
-    }
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/tasks");
-      const data = await response.json();
-
-      setTask(data);
-      localStorage.setItem("TaskData", JSON.stringify(data));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  fetchTasks();
-}, []);
   const add_Task = (newTask) => {
     setTask((prev) => [...prev, newTask]);
   };

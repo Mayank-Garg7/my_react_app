@@ -48,7 +48,8 @@ def update_task(id: int, new_task: Task):
 
 @app.delete("/task")
 def delete_task(id: int):
-    for task in tasks:
-        if task.id == id:
-            del(task)
+    for i in range(len(tasks)):
+        if tasks[i].id == id:
+            del tasks[i]
             return "Task has been deleted successfully!"
+    return "Task Id not Found"

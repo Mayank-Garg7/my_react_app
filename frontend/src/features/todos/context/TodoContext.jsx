@@ -12,24 +12,28 @@ export const ContextProvider = ({ children }) => {
   // Load tasks from localStorage or fall back to Mock json
   const [task, setTask] = useState([]);
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:8000/tasks");
+ useEffect(() => {
+  const fetchTasks = async () => {
+    const localData = localStorage.getItem("TaskData");
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch tasks");
-        }
+    if (localData) {
+      setTask(JSON.parse(localData));
+      return;
+    }
 
-        const data = await response.json();
-        setTask(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    try {
+      const response = await fetch("http://127.0.0.1:8000/tasks");
+      const data = await response.json();
 
-    fetchTasks();
-  }, []);
+      setTask(data);
+      localStorage.setItem("TaskData", JSON.stringify(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchTasks();
+}, []);
   const add_Task = (newTask) => {
     setTask((prev) => [...prev, newTask]);
   };
@@ -60,9 +64,9 @@ export const ContextProvider = ({ children }) => {
   };
 
   // Save tasks to localStorage whenever task changes
-  useEffect(() => {
-    localStorage.setItem("TaskData", JSON.stringify(task));
-  }, [task]);
+  // useEffect(() => {
+  //   localStorage.setItem("TaskData", JSON.stringify(task));
+  // }, [task]);
 
   // Update task status
   const handleStatusChange = (state, id) => {

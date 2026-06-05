@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from models import Task
 
 app = FastAPI()
 
@@ -13,30 +14,10 @@ app.add_middleware(
 )
 
 tasks = [
-    {
-        "id": 1,
-        "text": "did You do stretch today",
-        "status": "pending",
-        "priority": "moderate"
-    },
-    {
-        "id": 2,
-        "text": "did you learn something new today",
-        "status": "pending",
-        "priority": "Very-High"
-    },
-    {
-        "id": 3,
-        "text": "did eat something healthy",
-        "status": "pending",
-        "priority": "High"
-    },
-    {
-        "id": 4,
-        "text": "did you do worship",
-        "status": "pending",
-        "priority": "High"
-    },
+    Task(1, "did You do stretch today", "pending", "moderate"),
+    Task(2, "did you learn something new today", "pending", "Very-High"),
+    Task(3, "did eat something healthy", "pending", "High"),
+    Task(4, "did you do worship", "pending", "High")
 ]
 
 @app.get("/tasks")

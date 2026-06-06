@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import Tasks from "../mock/Tasks.json";
 
 const TodoContext = createContext();
 

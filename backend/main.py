@@ -63,3 +63,20 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+# --- 5. REFACTORED API ENDPOINTS ---
+
+@app.get("/", response_model=list[TaskResponse])
+def get_all_tasks(db: Session = Depends(get_db)):
+    return db.query(DBTask).all()
+
+
+@app.get("/tasks/{id}", response_model=TaskResponse)
+def get_tasks_by_id(id: int, db: Session = Depends(get_db)):
+    task = db.query(DBTask).filter(DBTask.id == id).first()
+    if not task:
+        raise HTTPException(status_code=404, detail="Task Not Found")
+    return task
+
+

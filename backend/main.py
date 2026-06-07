@@ -88,3 +88,27 @@ def add_tasks(task: TaskCreate, db: Session = Depends(get_db)):
     db.refresh(db_task)  # Refreshes db_task to get the auto-generated ID from Postgres
     return db_task
 
+
+@app.put("/task/{id}") # Fixed path parameter to match standard REST conventions
+def update_task(id: int, updated_task: TaskCreate, db: Session = Depends(get_db)):
+    db_task = db.query(DBTask).filter(DBTask.id == id).first()
+    if not db_task:
+        raise HTTPException(status_code=404, detail="No Match Found")
+    
+    db_task.text = updated_task.text
+    db_task.status = updated_task.status
+    db_task.priority = updated_task.priority
+    
+    db.commit()
+    return {"message": "Task has been updated successfully!"}
+
+
+@app.delete("/task/{id}") # Fixed path parameter to match standard REST conventions
+def delete_task(id: int, db: Session = Depends(get_db)):
+    db_task = db.query(DBTask).filter(DBTask.id == id).first()
+    if not db_task:
+        raise HTTPException(status_code=404, detail="Task Id not Found")
+    
+    db.delete(db_task)
+    db.commit()
+    return {"message": "Task has been deleted successfully!"}

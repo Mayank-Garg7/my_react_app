@@ -80,3 +80,11 @@ def get_tasks_by_id(id: int, db: Session = Depends(get_db)):
     return task
 
 
+@app.post("/tasks", response_model=TaskResponse)
+def add_tasks(task: TaskCreate, db: Session = Depends(get_db)):
+    db_task = DBTask(text=task.text, status=task.status, priority=task.priority)
+    db.add(db_task)
+    db.commit()
+    db.refresh(db_task)  # Refreshes db_task to get the auto-generated ID from Postgres
+    return db_task
+

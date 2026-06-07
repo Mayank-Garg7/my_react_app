@@ -6,7 +6,7 @@ function ShowTodos() {
   const { task } = useContext(TodoContext);
 
   // Safely guard against undefined/null tasks before filtering
-  const allTasks = tasks || [];
+  const allTasks = task || [];
 
   const pendingTasks = task.filter((item) => item.status === "pending");
   const completedTasks = task.filter((item) => item.status === "completed");

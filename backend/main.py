@@ -94,7 +94,6 @@ def update_task(id: int, updated_task: TaskCreate, db: Session = Depends(get_db)
     db_task = db.query(DBTask).filter(DBTask.id == id).first()
     if not db_task:
         raise HTTPException(status_code=404, detail="No Match Found")
-    
     db_task.text = updated_task.text
     db_task.status = updated_task.status
     db_task.priority = updated_task.priority

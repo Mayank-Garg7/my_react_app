@@ -18,7 +18,7 @@ app.add_middleware(
 
 # --- 1. POSTGRESQL DATABASE CONFIGURATION ---
 # Replace with your actual Postgres credentials: postgresql://username:password@host:port/database_name
-DATABASE_URL = "postgresql://postgres:password@localhost:5000/todo_db"
+DATABASE_URL = "postgresql+psycopg://postgres:password@localhost:5432/todo_db"
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "text": "have you drink 1-litre water to hydrate your-self",
+        "status": "pending"
+    },
+    {
+        "id": 2,
+        "text": "did you do excercise today's morning",
+        "status": "pending"
+    },
+    {
+        "id": 3,
+        "text": "what are thinking to do next now",
+        "status": "pending"
+    }
+]
